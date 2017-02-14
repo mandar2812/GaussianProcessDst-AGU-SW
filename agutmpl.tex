@@ -114,7 +114,7 @@ Multiscale Dynamics, Centrum Wiskunde Informatica, Science Park 123, 1098XG Amst
 %% ------------------------------------------------------------------------ %%
 
 
-\title{Gaussian Processes Autoregressive Models for Forecasting the Disturbance Storm Time Index}
+\title{Probabilistic Forecasting of the Disturbance Storm Time Index: An Autoregressive Gaussian Process approach}
 
 \authors{M. Chandorkar,\altaffilmark{1}
  E. Camporeale,\altaffilmark{1}
@@ -125,8 +125,6 @@ Multiscale Dynamics, Centrum Wiskunde Informatica, Science Park 123, 1098XG Amst
 
 \altaffiltext{2}{The Johns Hopkins University Applied Physics Laboratory, 
               Laurel, Maryland, 20723, USA}
-
-
 
 % >> Do NOT include any \begin...\end commands within
 % >> the body of the abstract.
@@ -187,6 +185,10 @@ Another important empirical model used to predict $Dst$ is the \emph{Nonlinear A
 %Talk about neural networks
 Yet another family of forecasting methods is based on \emph{Artificial Neural Networks} (ANN) that have been a popular choice for building predictive models. Researchers have employed both the standard \emph{feed forward} and the more specialized \emph{recurrent} architectures. \citet{Lund} proposed an \emph{Elman} recurrent network architecture called Lund $Dst$, which used the solar wind velocity, \emph{interplanetary magnetic field} (IMF) and historical $Dst$ data as inputs. \citet{JGRA:JGRA17461} used recurrent neural networks to predict $Kp$. \citet{SWE:SWE286} originally proposed a \emph{feed forward} network for predicting the $K_p$ index which used the \emph{Boyle coupling function} \citep{boyle1997empirical}. The same architecture is adapted for prediction of $Dst$ in \citet{SWE:SWE286}, popularly known as the Rice $Dst$ model. \citet{pallocchia:hal-00318011} proposed a \emph{neural network} model called EDDA to predict $Dst$ using only the IMF data.
 
+%Talk about need for probabilistic forecasts.
+Although much research has been done on prediction of the $Dst$ index, must less has been done on probabilistic forecasting of $Dst$. One such work described in \citet{McPherron:2013} involves identification of high speed solar wind streams using the W-S-A model (see \citet{WSAModel}), using predictions of high speed streams to construct ensembles of $Dst$ trajectories which yield the quartiles of $Dst$ time series.
+
+In this work we propose an inductive model for probabilistic forecating of the OSA $Dst$ using only the OMNI data. We use the \emph{Gaussian Process Regression} methodology to construct auto-regressive models for $Dst$ and show how to perform exact inference in this framework. We further outline a methodology to perform model selection with respect to its free parameters and time histories.  
 
 
 \section{Methodology: Gaussian Process} \label{sec:method}
@@ -241,6 +243,7 @@ Our aim is to infer the function $f(\mathbf{x})$ from the noisy training data an
 \begin{equation}
     \mathbf{X}_* = \left( \begin{array}{c} (\mathbf{x}^{*}_1)^T \\ (\mathbf{x}^{*}_2)^T \\ \vdots \\ (\mathbf{x}^{*}_M)^T \end{array} \right)_{M \times d} \label{eq:testfeat} 
 \end{equation}
+
 Using the multivariate Gaussian distribution in equation (\ref{eq:sto}) we can construct the joint distribution of $f(\mathbf{x})$ over the training and test points. The vector of training and test outputs $\left( \begin{array}{c} \mathbf{y} \\ \mathbf{f_*} \end{array} \right)$ is of dimension $(N+M) \times 1$ and is constructed by appending the test set predictions $\mathbf{f}_*$ to the observed noisy measurements $\mathbf{y}$.
 
 \begin{align}
@@ -335,7 +338,6 @@ Although the training and model selection data sets both do not have a geomagnet
 The computational complexity of calculation of the predictive distribution is $O(N^3)$, as discussed in section \ref{sec:inference}. This can limit the size of the covariance matrix constructed from the training data. Note that this computation overhead is paid for every unique assignment to the model hyper-parameters. However, our chosen training set has a size of 250 which is still very much below the computational limits of the method and in our case. Solving equation \ref{eq:posteriormean} on a laptop computer takes less than a second for the training set considered in our analysis. 
 
 The size of the training set has been decided by studying the performance of the models for increasing training sets. We have noticed that using training sets with more than 250 values does not increase the overall performance in \emph{OSA} prediction of Dst. 
-
 
 
 %%% End of body of article:
