@@ -198,19 +198,19 @@ Let us assume that we want to model a process in which a scalar quantity $y$ is 
 A set of labeled data points ${(\mathbf{x}_i, y_i); i = 1 \cdots N}$ can be conveniently expressed by a $N \times d$ data matrix $\mathbf{X}$ and a $N \times 1$ response vector $\mathbf{y}$, as shown in equations (\ref{eq:feat}) and (\ref{eq:labels}).
 
 \begin{align}
-  \mathbf{X} & = & \left( \begin{array}{c} \mathbf{x}^{T}_1 \\ \mathbf{x}^{T}_2 \\ \vdots \\ \mathbf{x}^{T}_n \end{array} \right)_{n \times d} \label{eq:feat} \\
+  \mathbf{X}  = & \left( \begin{array}{c} \mathbf{x}^{T}_1 \\ \mathbf{x}^{T}_2 \\ \vdots \\ \mathbf{x}^{T}_n \end{array} \right)_{n \times d} \label{eq:feat} \\
   \vspace{2\baselineskip}
-  \mathbf{y} & = & \left( \begin{array}{c} y_1 \\ y_2 \\ \vdots \\ y_N \end{array} \right) _{n \times 1} \label{eq:labels}
+  \mathbf{y}  = & \left( \begin{array}{c} y_1 \\ y_2 \\ \vdots \\ y_N \end{array} \right) _{n \times 1} \label{eq:labels}
 \end{align}
 
 Our task is to infer the values of the unknown function $f(.)$ based on the inputs $\mathbf{X}$ and the noisy observations $\mathbf{y}$. We now assume that the joint distribution of $f(\mathbf{x}_i), i = 1 \cdots N$ is a multivariate Gaussian as shown in equations (\ref{eq:fvalues}), (\ref{eq:normal}) and (\ref{eq:sto}).
 
 \begin{align}
- \mathbf{f} & = & \left( \begin{array}{c} f(\mathbf{x}_1) \\ f(\mathbf{x}_2) \\ \vdots \\ f(\mathbf{x}_N) \end{array} \right) \label{eq:fvalues}\\
+ \mathbf{f} = & \left( \begin{array}{c} f(\mathbf{x}_1) \\ f(\mathbf{x}_2) \\ \vdots \\ f(\mathbf{x}_N) \end{array} \right) \label{eq:fvalues}\\
  \vspace{2\baselineskip}
- \mathbf{f} | \mathbf{x}_1, \cdots, \mathbf{x}_N & \sim & \mathcal{N}\left( \mathbf{\mu}, \mathbf{\Lambda} \right)  \label{eq:normal}\\
+ \mathbf{f} | \mathbf{x}_1, \cdots, \mathbf{x}_N \sim & \mathcal{N}\left( \mathbf{\mu}, \mathbf{\Lambda} \right)  \label{eq:normal}\\
  \vspace{2\baselineskip}
- p( \mathbf{f} \ | \ \mathbf{x}_1, \cdots, \mathbf{x}_N) & = & \frac{1}{(2\pi)^{n/2} det(\mathbf{\Lambda})^{1/2}} exp \left(-\frac{1}{2} (\mathbf{f} - \mathbf{\mu})^T \mathbf{\Lambda}^{-1} (\mathbf{f} - \mathbf{\mu}) \right) \label{eq:sto}
+ p( \mathbf{f} \ | \ \mathbf{x}_1, \cdots, \mathbf{x}_N) = & \frac{1}{(2\pi)^{n/2} det(\mathbf{\Lambda})^{1/2}} exp \left(-\frac{1}{2} (\mathbf{f} - \mathbf{\mu})^T \mathbf{\Lambda}^{-1} (\mathbf{f} - \mathbf{\mu}) \right) \label{eq:sto}
 \end{align}
 
 Here $\mathbf{f}$ is a $N\times 1$ vector consisting of the values $f(\mathbf{x}_i), i = 1 \cdots N$. In equation (\ref{eq:normal}), $\mathbf{f}|\mathbf{x}_1, \cdots, \mathbf{x}_N$ denotes the conditional distribution of $\mathbf{f}$ with respect to the input data (i.e., $\mathbf{X}$) and $\mathcal{N}\left( \mathbf{\mu}, \mathbf{\Lambda} \right)$ represents a multivariate Gaussian distribution with mean vector $\mathbf{\mu}$ and covariance matrix $\mathbf{\Lambda}$. The probability density function of this distribution $p( \mathbf{f} \ | \ \mathbf{x}_1, \cdots, \mathbf{x}_N)$ is therefore given by equation (\ref{eq:sto}).
@@ -225,8 +225,8 @@ From equation (\ref{eq:sto}), one can observe that in order to uniquely define t
 Inspecting the individual elements of $\mathbf{\mu}$ and $\mathbf{\Lambda}$, we realise that they take the following form.
 
 \begin{align}
-      \mu_i & = & \mathbb{E}[f(\mathbf{x}_i)] := m(\mathbf{x}_i) \\
-      \Lambda_{ij} & = & \mathbb{E}[(f(\mathbf{x}_i) - \mu_i)(f(\mathbf{x}_j) - \mu_j)] := K(\mathbf{x}_i, \mathbf{x}_j)
+      \mu_i = & \mathbb{E}[f(\mathbf{x}_i)] := m(\mathbf{x}_i) \\
+      \Lambda_{ij} = & \mathbb{E}[(f(\mathbf{x}_i) - \mu_i)(f(\mathbf{x}_j) - \mu_j)] := K(\mathbf{x}_i, \mathbf{x}_j)
 \end{align}
 
 Here $\mathbb{E}$ denotes the expectation (average). The elements of $\mathbf{\mu}$ and $\mathbf{\Lambda}$ are expressed as functions $m(\mathbf{x}_i)$ and $K(\mathbf{x}_i, \mathbf{x}_j)$ of the inputs $\mathbf{x}_i,\ \mathbf{x}_j$. Specifying the functions $m(\mathbf{x})$ and $K(\mathbf{x}, \mathbf{x}')$ completely specifies each element of $\mathbf{\mu}$ and $\mathbf{\Lambda}$ and subsequently the finite dimensional distribution of $\mathbf{f} | \mathbf{x}_1, \cdots, \mathbf{x}_N $. In most practical applications of \emph{Gaussian Processes} the mean function is often defined as $m(\mathbf{x}) = 0$, which is not unreasonable if the data is standardized to have zero mean. \emph{Gaussian Processes} are represented in machine learning literature using the following notation:
@@ -244,9 +244,9 @@ Our aim is to infer the function $f(\mathbf{x})$ from the noisy training data an
 Using the multivariate Gaussian distribution in equation (\ref{eq:sto}) we can construct the joint distribution of $f(\mathbf{x})$ over the training and test points. The vector of training and test outputs $\left( \begin{array}{c} \mathbf{y} \\ \mathbf{f_*} \end{array} \right)$ is of dimension $(N+M) \times 1$ and is constructed by appending the test set predictions $\mathbf{f}_*$ to the observed noisy measurements $\mathbf{y}$.
 
 \begin{align}
-    \mathbf{f}_* & = & \left( \begin{array}{c} f(\mathbf{x^{*}_1}) \\ f(\mathbf{x^{*}_2}) \\ \vdots \\ f(\mathbf{x^{*}_M}) \end{array} \right)_{M \times 1} \\
+    \mathbf{f}_* = & \left( \begin{array}{c} f(\mathbf{x^{*}_1}) \\ f(\mathbf{x^{*}_2}) \\ \vdots \\ f(\mathbf{x^{*}_M}) \end{array} \right)_{M \times 1} \\
      \vspace{4\baselineskip}
-    \left( \begin{array}{c} \mathbf{y} \\ \mathbf{f_*} \end{array} \right) | \ \ \mathbf{X}, \mathbf{X}_* & \sim & 
+    \left( \begin{array}{c} \mathbf{y} \\ \mathbf{f_*} \end{array} \right) | \ \ \mathbf{X}, \mathbf{X}_* \sim & 
     \mathcal{N}\left(\mathbf{0}, \left[ \begin{array}{cc} \mathbf{K} + \sigma^{2} \mathbf{I} & \mathbf{K}_{*} \\ \mathbf{K}_{*}^T & \mathbf{K}_{**} \end{array} \right ] \right) \label{eq:dist}
 \end{align}
 
@@ -265,8 +265,8 @@ With the multivariate normal distribution defined in equation (\ref{eq:dist}), p
 \end{equation}
 where
 \begin{align}
-    \mathbf{\bar{f}_*} & = & \mathbf{K}^T_{*} [\mathbf{K} + \sigma^{2} \mathbf{I}]^{-1} \mathbf{y} \label{eq:posteriormean} \\
-    \Sigma_* & = & \mathbf{K}_{**} - \mathbf{K}^T_{*} \left(\mathbf{K} + \sigma^{2} \mathbf{I}\right)^{-1} \mathbf{K}_{*} \label{eq:posteriorcov}
+    \mathbf{\bar{f}_*} = & \mathbf{K}^T_{*} [\mathbf{K} + \sigma^{2} \mathbf{I}]^{-1} \mathbf{y} \label{eq:posteriormean} \\
+    \Sigma_* = & \mathbf{K}_{**} - \mathbf{K}^T_{*} \left(\mathbf{K} + \sigma^{2} \mathbf{I}\right)^{-1} \mathbf{K}_{*} \label{eq:posteriorcov}
 \end{align}
 
 The practical implementation of \emph{Gaussian Process} models requires the inversion of the training data kernel matrix $[\mathbf{K} + \sigma^{2} \mathbf{I}]^{-1}$ to calculate the parameters of the predictive distribution $\mathbf{f_*}|\mathbf{X},\mathbf{y},\mathbf{X_*}$. The computational complexity of this inference is dominated by the linear problem in Eq. (\ref{eq:posteriormean}), which can be solved via Cholesky decomposition, with a time complexity of $O(N^3)$, where $N$ is the number of data points.
@@ -283,9 +283,11 @@ The quantities $l$ in the RBF, and $b$ and $d$ in the polynomial kernel are know
 
 In this study, we construct Gaussian Process regression models with linear kernels as shown in equation (\ref{eq:usedKernel}), for \emph{one step ahead} prediction of the $Dst$ index. Our choice of kernel leaves us with only one adjustable hyper-parameter, the model noise $\sigma$. 
 
-\begin{equation}\label{eq:usedKernel}
-    K(\mathbf{x}, \mathbf{y}) = \mathbf{x}^\intercal \mathbf{y}
-\end{equation}
+\begin{align}
+    K_{osa}(\mathbf{x}, \mathbf{y}) & = K_{mlp}(\mathbf{x}, \mathbf{y}) + K_{st}(\mathbf{x}, \mathbf{y}) \label{eq:usedKernel} \\
+    K_{mlp}(\mathbf{x}, \mathbf{y}) & = sin^{-1}(\frac{w\mathbf{x}^\intercal \mathbf{y} + b}{\sqrt{w\mathbf{x}^\intercal \mathbf{x} + b + 1} \sqrt{w\mathbf{y}^\intercal \mathbf{y} + b + 1}}) \\
+    K_{st}(\mathbf{x}, \mathbf{y}) & = \frac{1}{1 + ||\mathbf{x} - \mathbf{y}||_{2}^d}
+\end{align}
 
 We initialize a grid of values for the model noise $\sigma$ and use the error on a predefined validation data set to choose the best performing value of $\sigma$. While constructing the grid of possible values for $\sigma$ it must be ensured that $\sigma > 0$ so that the kernel matrix constructed on the training data is non-singular.
 
@@ -296,10 +298,10 @@ Below in equations (\ref{eq:Dst}) - (\ref{eq:GPPoly}) we outline a \emph{Gaussia
 The features $\mathbf{x}_{t-1}$ can be any collection of quantities in the hourly resolution OMNI data set. Generally $\mathbf{x}_{t-1}$ are time histories of $Dst$ and other important variables such as plasma pressure $p(t)$, solar wind speed $V(t)$, $z$ component of the interplanetary magnetic field $B_z(t)$.
 
 \begin{align}
-    Dst(t) & = & f(\mathbf{x}_{t-1}) + \epsilon \label{eq:Dst} \\
-    \epsilon & \sim & \mathcal{N}(0, \sigma^2) \label{eq:GPNoise} \\
-    f(x_t) & \sim & \mathcal{GP}(m(\mathbf{x}_t), K(\mathbf{x}_t, \mathbf{x}_s)) \label{eq:DstGP} \\
-    K(\mathbf{x}, \mathbf{y}) & = & \mathbf{x}^\intercal \mathbf{y} + b \label{eq:GPPoly}
+    Dst(t) & =  f(\mathbf{x}_{t-1}) + \epsilon \label{eq:Dst} \\
+    \epsilon & \sim  \mathcal{N}(0, \sigma^2) \label{eq:GPNoise} \\
+    f(x_t) & \sim  \mathcal{GP}(m(\mathbf{x}_t), K(\mathbf{x}_t, \mathbf{x}_s)) \label{eq:DstGP} \\
+    K(\mathbf{x}, \mathbf{y}) & =  K_{osa}(\mathbf{x}, \mathbf{y}) \label{eq:GPPoly}
 \end{align}
 
 In the following we consider two choices for the input features $\mathbf{x}_{t-1}$ leading to two variants of \emph{Gaussian Process} regression for $Dst$ time series prediction.
@@ -309,20 +311,19 @@ In the following we consider two choices for the input features $\mathbf{x}_{t-1
 The simplest auto-regressive models for \emph{OSA} prediction of $Dst$ are those that use only the history of $Dst$ to construct input features for model training. The input features $\mathbf{x}_{t-1}$ at each time step are the history of $Dst(t)$ until a time lag of $p$ hours.
 
 \begin{align*}
-    \mathbf{x}_{t-1} & = & \left(Dst(t-1), \cdots , Dst(t-p+1)\right)
+    \mathbf{x}_{t-1} = & \left(Dst(t-1), \cdots , Dst(t-p+1)\right)
 \end{align*}
 
 \subsection{Gaussian Process Auto-Regressive with eXogenous inputs (GP-ARX)} \label{sec:gparx}
 
 Auto-regressive models can be augmented by including exogenous quantities in the inputs $\mathbf{x}_{t-1}$ at each time step, in order to improve predictive accuracy. $Dst$ gives a measure of ring currents, which are modulated by plasma sheet particle injections into the inner magnetosphere during sub-storms. Studies have shown that the substorm occurrence rate increases with solar wind velocity (high speed streams) \citep{Kissinger2011,Newell2016}. Prolonged southward interplanetary magnetic field (IMF) $z$-component ($B_z$) is needed for sub-storms to occur \citep{McPherron1986}. An increase in the solar wind electric field, $VB_z$, can increase the dawn-dusk electric field in the magnetotail, which in turn determines the amount of plasma sheet particle that move to the inner magnetosphere \citep{Friedel2001}. Therefore, our exogenous parameters consist of solar wind velocity, IMF $B_z$, and $VB_z$.   
 
-In this model we choose distinct time lags $p$ and $p_{ex}$ for auto-regressive and exogenous variables respectively. In addition we explicitly include the product $V B_z$ which is a proxy for the electric field, as an input.
+In this model we choose distinct time lags $p$, $p_{v}$ and $p_{b}$ for $Dst$, $V$ and $B_z$ respectively.
     
 \begin{align*}
-        & \mathbf{x}_{t-1} & = (Dst(t-1), \cdots , Dst(t-p+1), \\
-        & \ \ \ \ \ & V(t-1), \cdots, V(t-p_{ex}+1),\\
-        & \ \ \ \ \ & B_{z}(t-1), \cdots, B_{z}(t-p_{ex}+1),\\
-        & \ \ \ \ \ & V B_{z}(t-1), \cdots, V B_{z}(t-p_{ex}+1))
+       \mathbf{x}_{t-1} & = (Dst(t-1), \cdots , Dst(t-p+1), \\
+        & \ \ \ \ \  V(t-1), \cdots, V(t-p_{v}+1),\\
+        & \ \ \ \ \  B_{z}(t-1), \cdots, B_{z}(t-p_{b}+1))
 \end{align*}
 
 \section{Model Training and Validation}
