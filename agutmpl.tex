@@ -390,7 +390,7 @@ In the case of GP-AR we let the model order $p$ vary from $5$ to $12$ while for 
 After selecting the best performing GP-AR and GP-ARX models in the validation phase, we test and compare the performance of these models with the predictions generated from the \emph{persistence model} $\hat{D}st(t) = Dst(t-1)$, on a set of 63 storm events occurring between 1998 and 2006 as given in table \ref{table:teststorms}.
 
 
-\section{Conclusions}\label{sec:res}
+\section{Results}\label{sec:res}
 
 %%% End of body of article:
 
@@ -629,6 +629,20 @@ Coupled Simulated Annealing & 4 & 0.2 & 30 \\
 Maximum likelihood & NA & 0.2 & 150\\
 \end{tabular}
 \label{table:modelselection}
+\end{table}
+
+
+\begin{table}[]
+\centering
+\caption{Evaluation results for models on storm events listed in table \ref{table:teststorms}}
+\label{table:results}
+\begin{tabular}{l c c c}
+\hline
+Model & Mean Absolute Error & Root Mean Square Error & Coefficient of Correlation\\ \hline
+GP-ARX & 7.252 & 11.93 & 0.972\\
+GP-AR & 8.37 & 14.04 & 0.963\\
+Persistence & 9.182 & 14.94 & 0.957\\
+\end{tabular}
 \end{table}
 
 \begin{table}[]
