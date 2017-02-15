@@ -46,16 +46,16 @@
 % (If you are submitting to a journal other than jgrga,
 % substitute the initials of the journal for "jgrga" below.)
 
-\documentclass[draft,sw]{AGUTeX}
+\documentclass[sw, draft]{AGUTeX}
 
 \usepackage{amsmath}
 \usepackage{txfonts}
 \usepackage{graphicx}
 \usepackage{url}
 \usepackage{lineno}
- \linenumbers*[1]
-
-\graphicspath{{./figures/}}
+\linenumbers*[1]
+\usepackage{rotating}
+\graphicspath{{figures/}}
 %  To add line numbers to lines with equations:
 %  \begin{linenomath*}
 %  \begin{equation}
@@ -287,15 +287,22 @@ The central design issue in applying \emph{Gaussian Process} models is the choic
 
 For the success of a \emph{Gaussian Process} model an appropriate choice of kernel function is paramount. The symmetry and positive semi-definiteness of \emph{Gaussian Process} kernels implies that they represent inner-products between some basis function representation of the data. The interested reader is suggested to refer to \citet{Berlinet2004}, \citet{Scholkopf:2001:LKS:559923} and \citet{hofmann2008} for a thorough treatment of kernel functions and the rich theory behind them. Some common kernel functions used in machine learning are listed in table \ref{table:kernel}. 
 
-The quantities $l$ in the RBF, and $b$ and $d$ in the polynomial kernel are known as \emph{hyper-parameters}. Hyper-parameters give flexibility to particular kernel structure, for example $d = 1, 2, 3, \cdots$ in the polynomial kernel represents linear, quadratic, cubic and higher order polynomials respectively. The method of assigning values to the \emph{hyper-parameters} is crucial in the model building process and is known as \emph{model selection}. 
+The quantities $l$ in the RBF, and $b$ and $d$ in the polynomial kernel are known as \emph{hyper-parameters}. Hyper-parameters give flexibility to particular kernel structure, for example $d = 1, 2, 3, \cdots$ in the polynomial kernel represents linear, quadratic, cubic and higher order polynomials respectively. The process of assigning values to the \emph{hyper-parameters} is crucial in the model building process and is known as \emph{model selection}. 
 
 \subsection{Model Selection}
 
+Given a GP model with a kernel function $K_\theta$, the problem of model selection consists of finding appropriate values to the kernel hyper-parameters $\theta$. In order to assign values to $\theta$, we must define an objective function which represents our confidence that the GP model built from a particular value of $\theta$ is the best performing model. Since GP models encode assumptions about the probability distribution of the output data $\mathbf{y}$ given inputs $\mathbf{X}$, it is natural to use the negative log-likelihood of the training data as a model selection criterion. 
+
+\begin{align*}
+  Q(\theta) & = - log(p(\mathbf{y}|\mathbf{X}, K_\theta)) \\
+            & = -\frac{1}{2} \mathbf{y}^\intercal (\mathbf{K}_\theta + \sigma^{2}_n \mathbf{I})^{-1} \mathbf{y} - \frac{1}{2}|\mathbf{K}_\theta + \sigma^{2}_n \mathbf{I}| - \frac{n}{2}log(2\pi) \\
+  \mathbf{K}_\theta & = [K_{\theta}(\mathbf{x}_i, \mathbf{x}_j)]_{n \times n}
+\end{align*}
 
 
 \section{One Step Ahead Prediction} \label{sec:osa}
 
-Below in equations (\ref{eq:Dst}) - (\ref{eq:GPPoly}) we outline a \emph{Gaussian Process} formulation for \emph{OSA} prediction of $Dst$. A vector of features $\mathbf{x}_{t-1}$ is used as input to an unknown function $f(\mathbf{x}_{t-1})$.
+Below in equations (\ref{eq:Dst}) - (\ref{eq:DstGP}) we outline a \emph{Gaussian Process} formulation for \emph{OSA} prediction of $Dst$. A vector of features $\mathbf{x}_{t-1}$ is used as input to an unknown function $f(\mathbf{x}_{t-1})$.
 
 The features $\mathbf{x}_{t-1}$ can be any collection of quantities in the hourly resolution OMNI data set. Generally $\mathbf{x}_{t-1}$ are time histories of $Dst$ and other important variables such as plasma pressure $p(t)$, solar wind speed $V(t)$, $z$ component of the interplanetary magnetic field $B_z(t)$.
 
@@ -303,23 +310,10 @@ The features $\mathbf{x}_{t-1}$ can be any collection of quantities in the hourl
 \begin{align}
     Dst(t) & =  f(\mathbf{x}_{t-1}) + \epsilon \label{eq:Dst} \\
     \epsilon & \sim  \mathcal{N}(0, \sigma^2) \label{eq:GPNoise} \\
-    f(x_t) & \sim  \mathcal{GP}(m(\mathbf{x}_t), K(\mathbf{x}_t, \mathbf{x}_s)) \label{eq:DstGP} \\
-    K(\mathbf{x}, \mathbf{y}) & =  K_{osa}(\mathbf{x}, \mathbf{y}) \label{eq:GPPoly}
+    f(x_t) & \sim  \mathcal{GP}(m(\mathbf{x}_t), K_{osa}(\mathbf{x}_t, \mathbf{x}_s)) \label{eq:DstGP} \\
 \end{align}
 
-
-\subsection{Choice of Kernel}
-
-In this study, we construct Gaussian Process regression models with a combination of the \emph{maximum likelihood perceptron} kernel and \emph{student's T} kernel as shown in equations (\ref{eq:usedKernel}), for \emph{one step ahead} prediction of the $Dst$ index.
-
-\begin{align}
-    K_{osa}(\mathbf{x}, \mathbf{y}) & = K_{mlp}(\mathbf{x}, \mathbf{y}) + K_{st}(\mathbf{x}, \mathbf{y}) \label{eq:usedKernel} \\
-    K_{mlp}(\mathbf{x}, \mathbf{y}) & = sin^{-1}(\frac{w\mathbf{x}^\intercal \mathbf{y} + b}{\sqrt{w\mathbf{x}^\intercal \mathbf{x} + b + 1} \sqrt{w\mathbf{y}^\intercal \mathbf{y} + b + 1}}) \\
-    K_{st}(\mathbf{x}, \mathbf{y}) & = \frac{1}{1 + ||\mathbf{x} - \mathbf{y}||_{2}^d}
-\end{align}
-
-
-In the following we consider two choices for the input features $\mathbf{x}_{t-1}$ leading to two variants of \emph{Gaussian Process} regression for $Dst$ time series prediction.
+We consider two choices for the input features $\mathbf{x}_{t-1}$ leading to two variants of \emph{Gaussian Process} regression for $Dst$ time series prediction.
 
 \subsection{Gaussian Process Auto-Regressive (GP-AR)} \label{sec:gpar}
 
@@ -340,6 +334,16 @@ In this model we choose distinct time lags $p$, $p_{v}$ and $p_{b}$ for $Dst$, $
         & \ \ \ \ \  V(t-1), \cdots, V(t-p_{v}+1),\\
         & \ \ \ \ \  B_{z}(t-1), \cdots, B_{z}(t-p_{b}+1))
 \end{align*}
+
+\subsection{Choice of Kernel}
+
+In this study, we construct Gaussian Process regression models with a combination of the \emph{maximum likelihood perceptron} kernel and \emph{student's T} kernel as shown in equations (\ref{eq:usedKernel}), for \emph{one step ahead} prediction of the $Dst$ index.
+
+\begin{align}
+    K_{osa}(\mathbf{x}, \mathbf{y}) & = K_{mlp}(\mathbf{x}, \mathbf{y}) + K_{st}(\mathbf{x}, \mathbf{y}) \label{eq:usedKernel} \\
+    K_{mlp}(\mathbf{x}, \mathbf{y}) & = sin^{-1}(\frac{w\mathbf{x}^\intercal \mathbf{y} + b}{\sqrt{w\mathbf{x}^\intercal \mathbf{x} + b + 1} \sqrt{w\mathbf{y}^\intercal \mathbf{y} + b + 1}}) \\
+    K_{st}(\mathbf{x}, \mathbf{y}) & = \frac{1}{1 + ||\mathbf{x} - \mathbf{y}||_{2}^d}
+\end{align}
 
 \section{Model Training and Validation} \label{sec:modeltraining}
 
@@ -489,9 +493,48 @@ We acknowledge use of NASA/GSFC's Space Physics Data Facility's OMNIWeb (or CDAW
 % \end{figure}
 
 \begin{figure}
-\noindent\includegraphics[width=20pc]{Compare-mae-arx.eps}
+\noindent\includegraphics[width=\textwidth]{Compare-mae.png}
 \caption{Mean Absolute Error on validation set storms vs model order for GP-AR and GP-ARX}
 \label{fig:CompareMae}
+\end{figure}
+
+\begin{figure}
+\noindent\includegraphics[width=\textwidth]{Compare-cc.png}
+\caption{Mean Absolute Error on validation set storms vs model order for GP-AR and GP-ARX}
+\label{fig:CompareCC}
+\end{figure}
+
+
+\begin{figure}
+\noindent\includegraphics[width=\textwidth]{Compare-mae-arx.png}
+\caption{Mean Absolute Error on validation set storms vs model order for GP-AR and GP-ARX}
+\label{fig:CompareMaeARX}
+\end{figure}
+
+\begin{figure}
+\noindent\includegraphics[width=\textwidth]{Compare-cc-arx.png}
+\caption{Mean Absolute Error on validation set storms vs model order for GP-AR and GP-ARX}
+\label{fig:CompareCCARX}
+\end{figure}
+
+
+\begin{figure}
+\noindent\includegraphics[width=\textwidth]{PredictionsModel1/PredErrBars_Storm5.png}
+\caption{OSA Predictions with $\pm \sigma$ error bars for event: }
+\label{fig:ComparePred1}
+\end{figure}
+
+
+\begin{figure}
+\noindent\includegraphics[width=\textwidth]{PredictionsModel1/PredErrBars_Storm8.png}
+\caption{OSA Predictions with $\pm \sigma$ error bars for event: }
+\label{fig:ComparePred2}
+\end{figure}
+
+\begin{figure}
+\noindent\includegraphics[width=\textwidth]{PredictionsModel1/PredErrBars_Storm14.png}
+\caption{OSA Predictions with $\pm \sigma$ error bars for event: }
+\label{fig:ComparePred54}
 \end{figure}
 
 
