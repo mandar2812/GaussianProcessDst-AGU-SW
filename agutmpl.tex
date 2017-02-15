@@ -367,15 +367,27 @@ In this study, we construct Gaussian Process regression models with a combinatio
     K_{st}(\mathbf{x}, \mathbf{y}) & = \frac{1}{1 + ||\mathbf{x} - \mathbf{y}||_{2}^d}
 \end{align}
 
-\section{Model Training and Validation} \label{sec:modeltraining}
+\section{Experiments} \label{sec:modeltraining}
 
-Before running performance bench marks for \emph{OSA} $Dst$ prediction on the storm events in \citet{Ji2012}, training and model selection of \emph{GP-AR} and \emph{GP-ARX} models on independent data sets must be performed. For this purpose we choose segments 00:00 1 January 2008 - 10:00 11 January 2008 for training and 00:00 15 November 2014 - 23:00 1 December 2014 for model selection. 
+\subsection*{Training}
 
-The computational complexity of calculation of the predictive distribution is $O(N^3)$, as discussed in section \ref{sec:inference}. This can limit the size of the covariance matrix constructed from the training data. Note that this computation overhead is paid for every unique assignment to the model hyper-parameters. However, our chosen training set has a size of 250 which is still very much below the computational limits of the method and in our case. Solving equation \ref{eq:posteriormean} on a laptop computer takes less than a second for the training set considered in our analysis. 
+We selected OMNI data sections 00:00 January 3 2010 to 23:00 January 23 2010 and 20:00 August 5 2011 to 22:00 August 6 2011 for training the GP-AR and GP-ARX models. The first training data section consists of ambient fluctuations of $Dst$ while the second contains a geomagnetic storm.
 
+The computational complexity of calculation of the predictive distribution is $O(N^3)$, as discussed in section \ref{sec:inference}. This can limit the size of the covariance matrix constructed from the training data. Note that this computation overhead is paid for every unique assignment to the model hyper-parameters. However, our chosen training set has a size of 243 which is still very much below the computational limits of the method and in our case. Solving equation \ref{eq:posteriormean} on a laptop computer takes less than a second for the training set considered in our analysis. 
 
-\section{Experiments}\label{sec:exp}
+\subsection*{Selection}
 
+In order to find appropriate values of the hyper-parameters of the chosen kernel $K_osa(.,.)$, we apply \emph{grid search}, \emph{coupled simulated annealing} and \emph{maximum likelihood} methods. We fix the parameters $d$ and $\sigma^2$ of $K_st$ and model noise to values $0.01$ and $0.2$ respectively, the remaining parameters $w$ and $b$ are kept free to be calculated by model selection. Table \ref{table:modelselection} summarizes the settings used to run each model selection procedure.
+
+\subsection*{Validation}
+
+Apart from selecting the kernel parameters, one also needs to choose appropriate values for the auto-regressive orders $p$ in the case of GP-AR and $p, p_v, p_b$ in the case of GP-ARX. For this purpose we use a set of 24 storm events listed in table \ref{table:validationstorms} and for every assignment of values to the model order, we perform model selection with the routines in table \ref{table:modelselection} and record the performance on this validation set.
+
+In the case of GP-AR we let the model order $p$ vary from $5$ to $12$ while for GP-ARX we vary the total model order $p_t = p + p_v + p_b$ vary from $3$ to $12$ and for each $p_t$ evaluate every possible combination of $p$, $p_v$ and $p_b$ such that $p_t = p + p_v + p_b$ and $p, p_{v}, p_b > 0$.
+
+\subsection*{Evaluation}
+
+After selecting the best performing GP-AR and GP-ARX models in the validation phase, we test and compare the performance of these models with the predictions generated from the \emph{persistence model} $\hat{D}st(t) = Dst(t-1)$, on a set of 63 storm events occurring between 1998 and 2006 as given in table \ref{table:teststorms}.
 
 
 \section{Conclusions}\label{sec:res}
@@ -603,6 +615,20 @@ We acknowledge use of NASA/GSFC's Space Physics Data Facility's OMNIWeb (or CDAW
 \hline
 \end{tabular}
 \label{table:kernel}
+\end{table}
+
+\begin{table}[]
+\centering
+\caption{Settings of model selection procedures}
+\begin{tabular}{l c c c}
+\hline
+Procedure & Grid Size & Step & Max Iterations \\
+\hline
+Grid Search & 10 & 0.2 & NA \\
+Coupled Simulated Annealing & 4 & 0.2 & 30 \\
+Maximum likelihood & NA & 0.2 & 150\\
+\end{tabular}
+\label{table:modelselection}
 \end{table}
 
 \begin{table}[]
