@@ -383,6 +383,8 @@ In order to find appropriate values of the hyper-parameters of the chosen kernel
 
 Apart from selecting the kernel parameters, one also needs to choose appropriate values for the auto-regressive orders $p$ in the case of GP-AR and $p, p_v, p_b$ in the case of GP-ARX. For this purpose we use a set of 24 storm events listed in table \ref{table:validationstorms} and for every assignment of values to the model order, we perform model selection with the routines in table \ref{table:modelselection} and record the performance on this validation set.
 
+For measuring performance of model instances on the validation set storm events, the \emph{mean absolute error} (MAE), \emph{root mean square error} (RMSE) and \emph{coefficient of correlation} (CC) are calculated.
+
 In the case of GP-AR we let the model order $p$ vary from $5$ to $12$ while for GP-ARX we vary the total model order $p_t = p + p_v + p_b$ vary from $3$ to $12$ and for each $p_t$ evaluate every possible combination of $p$, $p_v$ and $p_b$ such that $p_t = p + p_v + p_b$ and $p, p_{v}, p_b > 0$.
 
 \subsection*{Evaluation}
@@ -391,6 +393,31 @@ After selecting the best performing GP-AR and GP-ARX models in the validation ph
 
 
 \section{Results}\label{sec:res}
+
+Figures \ref{fig:CompareMae} and \ref{fig:CompareCC} show how the mean absolute error and coefficient of correlation as calculated on the validation set of table \ref{table:validationstorms}, vary with increasing model order for GP-AR and GP-ARX. In both cases the results first improve and then stagnate or worsen. 
+
+Figures \ref{fig:CompareMaeARX} and \ref{fig:CompareCCARX} break down the results for GP-ARX by the model selection routine used. Apart from the general trend observed in \ref{fig:CompareMAE} and \ref{fig:CompareCC}, we also observe that \emph{grid search} and \emph{coupled simulated annealing} give superior performance as compared to gradient based \emph{maximum likelihood}.
+
+From the validation results, we can chose the model order which yields the best performance, for GP-AR it is $p_t = 6$ while for GP-ARX it is $p_t = 11$. Further examination of the validation results shows that in the scheme $p_t = 11$ choosing $p = 7, p_v = 1, p_b = 3$ gives superior results.
+
+After choosing the best performing GP-AR and GP-ARX models, we calculate their performance on the test set of table \ref{table:teststorms}. The results of these model evaluations are summarized in table \ref{table:results}, the GP-AR and GP-ARX models improve upon the performance of the \emph{persistence model}.
+
+Figures \ref{fig:ComparePred1}, \ref{fig:ComparePred2} and \ref{fig:ComparePred3} show OSA predictions of the GP-ARX model with $\pm \sigma$ error bars for three storm events in the years 1998 and 2000. The GP-ARX model gives accurate predictions along with plausible error bars around its mean predictions.
+
+\section{Conclusions}
+
+In this paper, we describe a flexible and expressive methodology for generating probabilistic forecasts of the $Dst$ index. We proposed two \emph{Gaussian Process} auto-regressive models, \emph{GP-ARX} and \emph{GP-AR}, to generate hourly predictions and their associated error bars. We also describe how to carry out model selection and validation of GP-AR and GP-ARX models.
+
+
+Our results can be summarized as follows.
+\begin{enumerate}
+      \item \emph{Persistence} model in the model building and evaluation process in the context of \emph{one step ahead} prediction of the $Dst$ index. It is clear that the \emph{persistence} behavior in the $Dst$ values is very strong i.e. the trivial predictive model $\hat{Dst}(t) = Dst(t-1)$ gives excellent performance according to the metrics chosen.
+      
+      \item \emph{Gaussian Process} AR and ARX models give encouraging benefits in OSA prediction. Leveraging the strengths of the Bayesian approach, they are able to learn robust predictors from data. If one compares the training sets used by all the models, one can appreciate that the models presented here need relatively small training and validations sets: the training set contains 243 instances, while the validation set contains 782 instances.
+      
+      \item Since the GP models generate predictive distributions for test data and not just point predictions they lend themselves to the requirements of space weather prediction very well because of the need to generate error bars on predictions.
+\end{enumerate}
+
 
 %%% End of body of article:
 
@@ -554,21 +581,21 @@ We acknowledge use of NASA/GSFC's Space Physics Data Facility's OMNIWeb (or CDAW
 
 \begin{figure}
 \noindent\includegraphics[width=\textwidth]{PredictionsModel1/PredErrBars_Storm5.png}
-\caption{OSA Predictions with $\pm \sigma$ error bars for event: }
+\caption{OSA Predictions with $\pm \sigma$ error bars for event: 1998/09/25 01:00 to 1998/09/26 00:00}
 \label{fig:ComparePred1}
 \end{figure}
 
 
 \begin{figure}
 \noindent\includegraphics[width=\textwidth]{PredictionsModel1/PredErrBars_Storm8.png}
-\caption{OSA Predictions with $\pm \sigma$ error bars for event: }
+\caption{OSA Predictions with $\pm \sigma$ error bars for event: 1998/11/13 00:00 to 1998/11/15 04:00}
 \label{fig:ComparePred2}
 \end{figure}
 
 \begin{figure}
 \noindent\includegraphics[width=\textwidth]{PredictionsModel1/PredErrBars_Storm14.png}
-\caption{OSA Predictions with $\pm \sigma$ error bars for event: }
-\label{fig:ComparePred54}
+\caption{OSA Predictions with $\pm \sigma$ error bars for event: 2000/04/06 17:00 to 2000/04/08 09:00}
+\label{fig:ComparePred3}
 \end{figure}
 
 
