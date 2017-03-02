@@ -405,12 +405,12 @@ In the case of GP-AR we let the model order $p$ vary from $5$ to $12$ while for 
 
 \subsection*{Evaluation}
 
-After selecting the best performing GP-AR and GP-ARX models in the validation phase, we test and compare the performance of these models with the predictions generated from the \emph{persistence model} $\hat{D}st(t) = Dst(t-1)$, on a set of 63 storm events occurring between 1998 and 2006 as given in table \ref{table:teststorms}.
+After selecting the best performing GP-AR and GP-ARX models in the validation phase, we test and compare the performance of these models with the predictions generated from the \emph{persistence model} $\hat{D}st(t) = Dst(t-1)$, on a set of 63 storm events occurring between 1998 and 2006 as given in table \ref{table:teststorms}, which is the same list of storm events as used in \citet{Ji2012}.
 
 
 \section{Results}\label{sec:res}
 
-Figures \ref{fig:CompareMae} and \ref{fig:CompareCC} show how the mean absolute error and coefficient of correlation as calculated on the validation set of table \ref{table:validationstorms}, vary with increasing model order for GP-AR and GP-ARX. In both cases the results first improve and then stagnate or worsen. 
+Figures \ref{fig:CompareMae} and \ref{fig:CompareCC} show how the mean absolute error and coefficient of correlation as calculated on the validation set storm events of table \ref{table:validationstorms}, vary with increasing model order for GP-AR and GP-ARX. The results are represented as boxplots, in which a rectangle is drawn to represent the second and third quartiles, with a vertical line inside to indicate the median value while outlying points are shown as dots. In both cases, the predictive performance first improves and then stagnates or worsens with increasing model order. 
 
 Figures \ref{fig:CompareMaeARX} and \ref{fig:CompareCCARX} break down the results for GP-ARX by the model selection routine used. Apart from the general trend observed in \ref{fig:CompareMae} and \ref{fig:CompareCC}, we also observe that \emph{grid search} and \emph{coupled simulated annealing} give superior performance as compared to gradient based \emph{maximum likelihood}.
 
@@ -418,7 +418,7 @@ From the validation results, we can chose the model order which yields the best 
 
 After choosing the best performing GP-AR and GP-ARX models, we calculate their performance on the test set of table \ref{table:teststorms}. The results of these model evaluations are summarized in table \ref{table:results}, the GP-AR and GP-ARX models improve upon the performance of the \emph{persistence model}.
 
-Figures \ref{fig:ComparePred1}, \ref{fig:ComparePred2} and \ref{fig:ComparePred3} show OSA predictions of the GP-ARX model with $\pm \sigma$ error bars for three storm events in the years 1998 and 2000. The GP-ARX model gives accurate predictions along with plausible error bars around its mean predictions.
+Figures \ref{fig:ComparePred1}, \ref{fig:ComparePred2} and \ref{fig:ComparePred3} show OSA predictions of the GP-ARX model with $\pm \sigma$ error bars for three storm events in the time period between 1998 and 2003. The GP-ARX model gives accurate predictions along with plausible error bars around its mean predictions.
 
 \section{Conclusions}
 
@@ -427,12 +427,16 @@ In this paper, we describe a flexible and expressive methodology for generating 
 
 Our results can be summarized as follows.
 \begin{enumerate}
-      \item \emph{Persistence} model in the model building and evaluation process in the context of \emph{one step ahead} prediction of the $Dst$ index. It is clear that the \emph{persistence} behavior in the $Dst$ values is very strong i.e. the trivial predictive model $\hat{Dst}(t) = Dst(t-1)$ gives excellent performance according to the metrics chosen.
+      \item \emph{Persistence} model plays an important role in the model building and evaluation process in the context of \emph{one step ahead} prediction of the $Dst$ index. It is clear that the persistence behavior in the $Dst$ values is very strong i.e. the trivial predictive model $\hat{Dst}(t) = Dst(t-1)$ gives excellent performance according to the metrics chosen.
       
       \item \emph{Gaussian Process} AR and ARX models give encouraging benefits in OSA prediction. Leveraging the strengths of the Bayesian approach, they are able to learn robust predictors from data. If one compares the training sets used by all the models, one can appreciate that the models presented here need relatively small training and validations sets: the training set contains 243 instances, while the validation set contains 782 instances.
       
       \item Since the GP models generate predictive distributions for test data and not just point predictions they lend themselves to the requirements of space weather prediction very well because of the need to generate error bars on predictions.
+      
+      \item The \emph{Gaussian Process} regression framework described in this study can also be extended to multiple hour ahead prediction of $Dst$, which is currently a work in progress.
 \end{enumerate}
+
+
 
 
 %%% End of body of article:
@@ -571,33 +575,33 @@ We acknowledge use of NASA/GSFC's Space Physics Data Facility's OMNIWeb (or CDAW
 
 \begin{figure}
 \noindent\includegraphics[width=\textwidth]{Compare-mae.png}
-\caption{Mean Absolute Error on validation set storms vs model order for GP-AR and GP-ARX}
+\caption{Mean Absolute Error on validation set storms vs model order for GP-AR and GP-ARX. \\ \textbf{Key}: Rectangle borders represent the second and third quartiles, with a horizontal line inside to indicate the median value while outlying points are shown as dots}
 \label{fig:CompareMae}
 \end{figure}
 
 \begin{figure}
 \noindent\includegraphics[width=\textwidth]{Compare-cc.png}
-\caption{Mean Absolute Error on validation set storms vs model order for GP-AR and GP-ARX}
+\caption{Coefficient of Correlation on validation set storms vs model order for GP-AR and GP-ARX \\ \textbf{Key}: Rectangle borders represent the second and third quartiles, with a horizontal line inside to indicate the median value while outlying points are shown as dots}
 \label{fig:CompareCC}
 \end{figure}
 
 
 \begin{figure}
 \noindent\includegraphics[width=\textwidth]{Compare-mae-arx.png}
-\caption{Mean Absolute Error on validation set storms vs model order for GP-AR and GP-ARX}
+\caption{Mean Absolute Error on validation set storms vs model order for GP-AR and GP-ARX for \emph{CSA}, \emph{GS} and \emph{ML} model selection routines \\ Rectangle borders represent the second and third quartiles, with a horizontal line inside to indicate the median value while outlying points are shown as dots}
 \label{fig:CompareMaeARX}
 \end{figure}
 
 \begin{figure}
 \noindent\includegraphics[width=\textwidth]{Compare-cc-arx.png}
-\caption{Mean Absolute Error on validation set storms vs model order for GP-AR and GP-ARX}
+\caption{Coefficient of Correlation on validation set storms vs model order for GP-AR and GP-ARX for \emph{CSA}, \emph{GS} and \emph{ML} model selection routines \\ Rectangle borders represent the second and third quartiles, with a horizontal line inside to indicate the median value while outlying points are shown as dots}
 \label{fig:CompareCCARX}
 \end{figure}
 
 
 \begin{figure}
-\noindent\includegraphics[width=\textwidth]{PredictionsModel1/PredErrBars_Storm5.png}
-\caption{OSA Predictions with $\pm \sigma$ error bars for event: 1998/09/25 01:00 to 1998/09/26 00:00}
+\noindent\includegraphics[width=\textwidth]{PredictionsModel1/PredErrBars_Storm43.png}
+\caption{OSA Predictions with $\pm \sigma$ error bars for event: 2003/06/17 19:00 to 2003/06/19 03:00}
 \label{fig:ComparePred1}
 \end{figure}
 
@@ -609,8 +613,8 @@ We acknowledge use of NASA/GSFC's Space Physics Data Facility's OMNIWeb (or CDAW
 \end{figure}
 
 \begin{figure}
-\noindent\includegraphics[width=\textwidth]{PredictionsModel1/PredErrBars_Storm14.png}
-\caption{OSA Predictions with $\pm \sigma$ error bars for event: 2000/04/06 17:00 to 2000/04/08 09:00}
+\noindent\includegraphics[width=\textwidth]{PredictionsModel1/PredErrBars_Storm9.png}
+\caption{OSA Predictions with $\pm \sigma$ error bars for event: 1999/01/13 16:00 to 1999/01/14 20:00}
 \label{fig:ComparePred3}
 \end{figure}
 
