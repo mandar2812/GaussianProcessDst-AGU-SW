@@ -410,7 +410,7 @@ After selecting the best performing GP-AR and GP-ARX models in the validation ph
 
 \section{Results}\label{sec:res}
 
-Figures \ref{fig:CompareMae} and \ref{fig:CompareCC} show how the mean absolute error and coefficient of correlation as calculated on the validation set storm events of Table \ref{table:validationstorms}, vary with increasing model order for GP-AR and GP-ARX. The results are represented as boxplots, in which a rectangle is drawn to represent the first and third quartiles, with a vertical line inside to indicate the median value while outlying points are shown as dots. In both cases, the predictive performance first improves and then stagnates or worsens with increasing model order. 
+Figures \ref{fig:CompareMae} and \ref{fig:CompareCC} show how the mean absolute error and coefficient of correlation as calculated on the validation set storm events of Table \ref{table:validationstorms}, vary with increasing model order for GP-AR and GP-ARX. The results are represented as box and whisker plots, in which a rectangle is drawn to represent the first and third quartiles, with a horizontal line inside to indicate the median value, outlying points are shown as dots while the whiskers indicate the smallest and largest non-outliers. In both cases, the predictive performance first improves and then stagnates or worsens with increasing model order. 
 
 Figures \ref{fig:CompareMaeARX} and \ref{fig:CompareCCARX} break down the results for GP-ARX by the model selection routine used. Apart from the general trend observed in \ref{fig:CompareMae} and \ref{fig:CompareCC}, we also observe that \emph{grid search} and \emph{coupled simulated annealing} give superior performance as compared to gradient based \emph{maximum likelihood}.
 
@@ -575,26 +575,26 @@ We acknowledge use of NASA/GSFC's Space Physics Data Facility's OMNIWeb (or CDAW
 
 \begin{figure}
 \noindent\includegraphics[width=\textwidth]{Compare-mae.png}
-\caption{Mean Absolute Error on validation set storms vs model order for GP-AR and GP-ARX. \\ \textbf{Key}: Rectangle borders represent the second and third quartiles, with a horizontal line inside to indicate the median value while outlying points are shown as dots}
+\caption{Mean Absolute Error on validation set storms vs model order for GP-AR and GP-ARX. \\ \textbf{Key}: Rectangle borders represent the first and third quartiles, with a horizontal line inside to indicate the median value, outlying points are shown as dots and whiskers indicate the smallest and largest non-outliers}
 \label{fig:CompareMae}
 \end{figure}
 
 \begin{figure}
 \noindent\includegraphics[width=\textwidth]{Compare-cc.png}
-\caption{Coefficient of Correlation on validation set storms vs model order for GP-AR and GP-ARX \\ \textbf{Key}: Rectangle borders represent the second and third quartiles, with a horizontal line inside to indicate the median value while outlying points are shown as dots}
+\caption{Coefficient of Correlation on validation set storms vs model order for GP-AR and GP-ARX \\ \textbf{Key}: Rectangle borders represent the first and third quartiles, with a horizontal line inside to indicate the median value, outlying points are shown as dots and whiskers indicate the smallest and largest non-outliers}
 \label{fig:CompareCC}
 \end{figure}
 
 
 \begin{figure}
 \noindent\includegraphics[width=\textwidth]{Compare-mae-arx.png}
-\caption{Mean Absolute Error on validation set storms vs model order for GP-AR and GP-ARX for \emph{CSA}, \emph{GS} and \emph{ML} model selection routines \\ Rectangle borders represent the second and third quartiles, with a horizontal line inside to indicate the median value while outlying points are shown as dots}
+\caption{Mean Absolute Error on validation set storms vs model order for GP-AR and GP-ARX for \emph{CSA}, \emph{GS} and \emph{ML} model selection routines \\ \textbf{Key}: Rectangle borders represent the first and third quartiles, with a horizontal line inside to indicate the median value, outlying points are shown as dots and whiskers indicate the smallest and largest non-outliers}
 \label{fig:CompareMaeARX}
 \end{figure}
 
 \begin{figure}
 \noindent\includegraphics[width=\textwidth]{Compare-cc-arx.png}
-\caption{Coefficient of Correlation on validation set storms vs model order for GP-AR and GP-ARX for \emph{CSA}, \emph{GS} and \emph{ML} model selection routines \\ Rectangle borders represent the second and third quartiles, with a horizontal line inside to indicate the median value while outlying points are shown as dots}
+\caption{Coefficient of Correlation on validation set storms vs model order for GP-AR and GP-ARX for \emph{CSA}, \emph{GS} and \emph{ML} model selection routines \\ \textbf{Key}: Rectangle borders represent the first and third quartiles, with a horizontal line inside to indicate the median value, outlying points are shown as dots and whiskers indicate the smallest and largest non-outliers}
 \label{fig:CompareCCARX}
 \end{figure}
 
