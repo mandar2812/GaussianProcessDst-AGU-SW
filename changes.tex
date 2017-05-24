@@ -1,4 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%DIF LATEXDIFF DIFFERENCE FILE
+%DIF DEL agutmpl.tex         Mon Mar 20 17:48:59 2017
+%DIF ADD revised-draft.tex   Wed May 24 15:01:08 2017
 % AGUtmpl.tex: this template file is for articles formatted with LaTeX2e,
 % Modified March 2013
 %
@@ -107,6 +110,66 @@
 \authoraddr{Corresponding author: M. H. Chandorkar,
 Multiscale Dynamics, Centrum Wiskunde Informatica, Science Park 123, 1098XG Amsterdam, Netherlands.
 (mandar.chandorkar@cwi.nl)}
+%DIF PREAMBLE EXTENSION ADDED BY LATEXDIFF
+%DIF UNDERLINE PREAMBLE %DIF PREAMBLE
+\RequirePackage[normalem]{ulem} %DIF PREAMBLE
+\RequirePackage{color}\definecolor{RED}{rgb}{1,0,0}\definecolor{BLUE}{rgb}{0,0,1} %DIF PREAMBLE
+\providecommand{\DIFadd}[1]{{\protect\color{blue}\uwave{#1}}} %DIF PREAMBLE
+\providecommand{\DIFdel}[1]{{\protect\color{red}\sout{#1}}}                      %DIF PREAMBLE
+%DIF SAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddbegin}{} %DIF PREAMBLE
+\providecommand{\DIFaddend}{} %DIF PREAMBLE
+\providecommand{\DIFdelbegin}{} %DIF PREAMBLE
+\providecommand{\DIFdelend}{} %DIF PREAMBLE
+%DIF FLOATSAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddFL}[1]{\DIFadd{#1}} %DIF PREAMBLE
+\providecommand{\DIFdelFL}[1]{\DIFdel{#1}} %DIF PREAMBLE
+\providecommand{\DIFaddbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFaddendFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelendFL}{} %DIF PREAMBLE
+\newcommand{\DIFscaledelfig}{0.5}
+%DIF HIGHLIGHTGRAPHICS PREAMBLE %DIF PREAMBLE
+\RequirePackage{settobox} %DIF PREAMBLE
+\RequirePackage{letltxmacro} %DIF PREAMBLE
+\newsavebox{\DIFdelgraphicsbox} %DIF PREAMBLE
+\newlength{\DIFdelgraphicswidth} %DIF PREAMBLE
+\newlength{\DIFdelgraphicsheight} %DIF PREAMBLE
+% store original definition of \includegraphics %DIF PREAMBLE
+\LetLtxMacro{\DIFOincludegraphics}{\includegraphics} %DIF PREAMBLE
+\newcommand{\DIFaddincludegraphics}[2][]{{\color{blue}\fbox{\DIFOincludegraphics[#1]{#2}}}} %DIF PREAMBLE
+\newcommand{\DIFdelincludegraphics}[2][]{% %DIF PREAMBLE
+\sbox{\DIFdelgraphicsbox}{\DIFOincludegraphics[#1]{#2}}% %DIF PREAMBLE
+\settoboxwidth{\DIFdelgraphicswidth}{\DIFdelgraphicsbox} %DIF PREAMBLE
+\settoboxtotalheight{\DIFdelgraphicsheight}{\DIFdelgraphicsbox} %DIF PREAMBLE
+\scalebox{\DIFscaledelfig}{% %DIF PREAMBLE
+\parbox[b]{\DIFdelgraphicswidth}{\usebox{\DIFdelgraphicsbox}\\[-\baselineskip] \rule{\DIFdelgraphicswidth}{0em}}\llap{\resizebox{\DIFdelgraphicswidth}{\DIFdelgraphicsheight}{% %DIF PREAMBLE
+\setlength{\unitlength}{\DIFdelgraphicswidth}% %DIF PREAMBLE
+\begin{picture}(1,1)% %DIF PREAMBLE
+\thicklines\linethickness{2pt} %DIF PREAMBLE
+{\color[rgb]{1,0,0}\put(0,0){\framebox(1,1){}}}% %DIF PREAMBLE
+{\color[rgb]{1,0,0}\put(0,0){\line( 1,1){1}}}% %DIF PREAMBLE
+{\color[rgb]{1,0,0}\put(0,1){\line(1,-1){1}}}% %DIF PREAMBLE
+\end{picture}% %DIF PREAMBLE
+}\hspace*{3pt}}} %DIF PREAMBLE
+} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddbegin}{\DIFaddbegin} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddend}{\DIFaddend} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelbegin}{\DIFdelbegin} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelend}{\DIFdelend} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddbegin}{\DIFOaddbegin \let\includegraphics\DIFaddincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddend}{\DIFOaddend \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelbegin}{\DIFOdelbegin \let\includegraphics\DIFdelincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelend}{\DIFOaddend \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddbeginFL}{\DIFaddbeginFL} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddendFL}{\DIFaddendFL} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelbeginFL}{\DIFdelbeginFL} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelendFL}{\DIFdelendFL} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddbeginFL}{\DIFOaddbeginFL \let\includegraphics\DIFaddincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddendFL}{\DIFOaddendFL \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelbeginFL}{\DIFOdelbeginFL \let\includegraphics\DIFdelincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelendFL}{\DIFOaddendFL \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+%DIF END PREAMBLE EXTENSION ADDED BY LATEXDIFF
 
 \begin{document}
 
@@ -169,10 +232,18 @@ Geomagnetic indices come in various forms, they may take continuous or discrete 
 
 \begin{enumerate}
     \item $K_p$: The Kp-index is a discrete valued global geomagnetic activity index and is based on 3 hour measurements of the K-indices \citep{Bartels}. The K-index itself is a three hour long quasi-logarithmic local index of the geomagnetic activity, relative to a calm day curve for the given location.
-    
+
     \item $AE$: The Auroral Electrojet Index, $AE$, is designed to provide a global, quantitative measure of auroral zone magnetic activity produced by enhanced Ionospheric currents flowing below and within the auroral oval \citep{AEIndex}. It is a continuous index which is calculated every hour.
-    
-    \item $Dst$: A continuous hourly index which gives a measure of the weakening or strengthening of the Earth's equatorial magnetic field due to particle injection in the magnetosphere. Particle injection has a number of sources such as, weakening or strengthening of the ring currents and the geomagnetic storms \citep{DesslerAndParker}, near Earth cross tail current \citep{ganushkina2004long} and \citep{angeo-28-123-2010}, partial ring current \citep{JGRA:JGRA15878}, substorm current wedge \citep{JGRA:JGRA15211}, magnetopause current, etc . 
+
+    \item $Dst$: A continuous hourly index which gives a measure of the weakening or strengthening of the Earth's equatorial magnetic field due to \DIFdelbegin \DIFdel{the }\DIFdelend \DIFaddbegin \DIFadd{particle injection in the magnetosphere. Particle injection has a number of sources such as, }\DIFaddend weakening or strengthening of the ring currents and the geomagnetic storms \citep{DesslerAndParker}\DIFaddbegin \DIFadd{, near Earth cross tail current \mbox{%DIFAUXCMD
+\citep{ganushkina2004long} }%DIFAUXCMD
+and \mbox{%DIFAUXCMD
+\citep{angeo-28-123-2010}}%DIFAUXCMD
+, partial ring current \mbox{%DIFAUXCMD
+\citep{JGRA:JGRA15878}}%DIFAUXCMD
+, substorm current wedge \mbox{%DIFAUXCMD
+\citep{JGRA:JGRA15211}}%DIFAUXCMD
+, magnetopause current, etc }\DIFaddend . 
 \end{enumerate}
 
 %Talk about Burton and friends
@@ -183,13 +254,17 @@ The $Dst$ OSA prediction problem has been the subject of several modeling effort
 The \citet{JGR:JGR10260} model has proven to be very influential particularly due to its simplicity. Many subsequent works have modified the proposed ODE by proposing alternative expressions for the injection term $Q(t)$ [see \citet{Wang:Dst}, \citet{JGRA:JGRA14856}]. More recently \citet{Ballatore2014} have tried to generate empirical estimates for the injection and decay terms in Burton's equation.
 
 %Talk about NARMAX Dst
-Another important empirical model used to predict $Dst$ is the \emph{Nonlinear Auto-Regessive Moving Average with eXogenous inputs} (NARMAX) methodology developed in \citet{doi:10.1080/00207178908559767}, \citet{GRL:GRL13494}, \citet{GRL:GRL20944}, \citet{JGRA:JGRA18657}, \citet{balikhin:narmax}, \citet{JGRA:JGRA20661} and \citet{JGRA:JGRA50192}. The NARMAX methodology builds models by constructing polynomial expansions of inputs and determines the best combinations of monomials to include in the refined model by using a criterion called the \emph{error reduction ratio} (ERR). The parameters of the so called NARMAX OLS-ERR model are calculated by solving the \emph{ordinary least squares} (OLS) problem arising from a quadratic objective function. It must be noted that the NARMAX methodology is not limited to polynomial functions, rather any set of basis function expansions can be used with it, such as but not limited to radial basis functions, wavelets etc \citep{doi:10.1080/00207720600903011}, \citep{JGRA:JGRA17327}. The reader may refer to \citet{billings2013nonlinear} for a detailed exposition of the NARMAX methodology.
+Another important empirical model used to predict $Dst$ is the \emph{Nonlinear Auto-Regessive Moving Average with eXogenous inputs} (NARMAX) methodology developed in \citet{doi:10.1080/00207178908559767}, \citet{GRL:GRL13494}, \citet{GRL:GRL20944}, \citet{JGRA:JGRA18657}, \citet{balikhin:narmax}, \citet{JGRA:JGRA20661} and \citet{JGRA:JGRA50192}. The NARMAX methodology builds models by constructing polynomial expansions of inputs and determines the best combinations of monomials to include in the refined model by using a criterion called the \emph{error reduction ratio} (ERR). The parameters of the so called NARMAX OLS-ERR model are calculated by solving the \emph{ordinary least squares} (OLS) problem arising from a quadratic objective function. \DIFaddbegin \DIFadd{It must be noted that the NARMAX methodology is not limited to polynomial functions, rather any set of basis function expansions can be used with it, such as but not limited to radial basis functions, wavelets etc \mbox{%DIFAUXCMD
+\citep{doi:10.1080/00207720600903011}}%DIFAUXCMD
+, \mbox{%DIFAUXCMD
+\citep{JGRA:JGRA17327}}%DIFAUXCMD
+. }\DIFaddend The reader may refer to \citet{billings2013nonlinear} for a detailed exposition of the NARMAX methodology.
 
 %Talk about neural networks
 Yet another family of forecasting methods is based on \emph{Artificial Neural Networks} (ANN) that have been a popular choice for building predictive models. Researchers have employed both the standard \emph{feed forward} and the more specialized \emph{recurrent} architectures. \citet{Lund} proposed an \emph{Elman} recurrent network architecture called Lund $Dst$, which used the solar wind velocity, \emph{interplanetary magnetic field} (IMF) and historical $Dst$ data as inputs. \citet{JGRA:JGRA17461} used recurrent neural networks to predict $Kp$. \citet{SWE:SWE286} originally proposed a \emph{feed forward} network for predicting the $K_p$ index which used the \emph{Boyle coupling function} \citet{boyle1997empirical}. The same architecture is adapted for prediction of $Dst$ in \citet{SWE:SWE286}, popularly known as the Rice $Dst$ model. \citet{pallocchia:hal-00318011} proposed a \emph{neural network} model called EDDA to predict $Dst$ using only the IMF data.
 
 %Talk about need for probabilistic forecasts.
-Although much research has been done on prediction of the $Dst$ index, much less has been done on probabilistic forecasting of $Dst$. One such work described in \citet{McPherron:2013} involves identification of high speed solar wind streams using the WSA model (see \citet{WSAModel}), using predictions of high speed streams to construct ensembles of $Dst$ trajectories which yield the quartiles of $Dst$ time series. A simple way to construct error bars on the predictions of forecasting models is by using the so called \textit{past cast} performance i.e. by calculating the standard deviations of the predictions generated by the model on a hold out data set. One limitation of such an approach is that the variance of the model predictions, once computed, remains static and does not adapt according to the inputs provided to the model. This may lead to overestimation or underestimation of the uncertainty around a models predictions depending on the prevelant geo-magnetic conditions and the data set used to calculate the \textit{past cast} model performance.
+Although much research has been done on prediction of the $Dst$ index, much less has been done on probabilistic forecasting of $Dst$. One such work described in \citet{McPherron:2013} involves identification of high speed solar wind streams using the WSA model (see \citet{WSAModel}), using predictions of high speed streams to construct ensembles of $Dst$ trajectories which yield the quartiles of $Dst$ time series\DIFaddbegin \DIFadd{. A simple way to construct error bars on the predictions of forecasting models is by using the so called }\textit{\DIFadd{past cast}} \DIFadd{performance i.e. by calculating the standard deviations of the predictions generated by the model on a hold out data set. One limitation of such an approach is that the variance of the model predictions, once computed, remains static and does not adapt according to the inputs provided to the model. This may lead to overestimation or underestimation of the uncertainty around a models predictions depending on the prevelant geo-magnetic conditions and the data set used to calculate the }\textit{\DIFadd{past cast}} \DIFadd{model performance}\DIFaddend .
 
 In this work we propose a technique for probabilistic forecasting of $Dst$, which yields a predictive distribution as a closed form expression. Our models take as input past values of $Dst$, solar wind speed and the \textit{z} component of the \emph{Interplanetary Magnetic Field} (IMF) and output a Gaussian distribution with a specific mean and variance as the OSA prediction of the $Dst$. 
 
@@ -346,7 +421,7 @@ The simplest auto-regressive models for \emph{OSA} prediction of $Dst$ are those
 Auto-regressive models can be augmented by including exogenous quantities in the inputs $\mathbf{x}_{t-1}$ at each time step, in order to improve predictive accuracy. $Dst$ gives a measure of ring currents, which are modulated by plasma sheet particle injections into the inner magnetosphere during sub-storms. Studies have shown that the substorm occurrence rate increases with solar wind velocity (high speed streams) \citet{Kissinger2011,Newell2016}. Prolonged southward interplanetary magnetic field (IMF) $z$-component ($B_z$) is needed for sub-storms to occur \citet{McPherron1986}. An increase in the solar wind electric field, $V_{sw}B_z$, can increase the dawn-dusk electric field in the magnetotail, which in turn determines the amount of plasma sheet particle that move to the inner magnetosphere \citet{Friedel2001}. Therefore, our exogenous parameters consist of solar wind velocity $V_{sw}$ and IMF $B_z$.   
 
 In this model we choose distinct time lags $p$, $p_{v}$ and $p_{b}$ for $Dst$, $V$ and $B_z$ respectively.
-    
+
 \begin{align*}
        \mathbf{x}_{t-1} & = (Dst(t-1), \cdots , Dst(t-p+1), \\
         & \ \ \ \ \  V_{sw}(t-1), \cdots, V_{sw}(t-p_{v}+1),\\
@@ -428,11 +503,11 @@ In this paper, we describe a flexible and expressive methodology for generating 
 Our results can be summarized as follows.
 \begin{enumerate}
       \item \emph{Persistence} model plays an important role in the model building and evaluation process in the context of \emph{one step ahead} prediction of the $Dst$ index. It is clear that the persistence behavior in the $Dst$ values is very strong i.e. the trivial predictive model $\hat{Dst}(t) = Dst(t-1)$ gives excellent performance according to the metrics chosen.
-      
+
       \item \emph{Gaussian Process} AR and ARX models give encouraging benefits in OSA prediction. Leveraging the strengths of the Bayesian approach, they are able to learn robust predictors from data. If one considers the size of the data used in our study, one can appreciate that the models presented here need relatively small training and validations sets: the training set contains 243 instances, while the validation set contains 782 instances.
-      
+
       \item Since the GP models generate predictive distributions for test data and not just point predictions they lend themselves to the requirements of space weather prediction very well because of the need to generate error bars on predictions.
-      
+
       \item The \emph{Gaussian Process} regression framework described in this study can also be extended to multiple hour ahead prediction of $Dst$, which is currently a work in progress.
 \end{enumerate}
 
@@ -651,13 +726,13 @@ We acknowledge use of NASA/GSFC's Space Physics Data Facility's OMNIWeb (or CDAW
  Name  & Expression & Hyperparameters  \\
 \hline
   Radial Basis Function (RBF)  & $\frac{1}{2} exp(-||\mathbf{x} - \mathbf{y}||^2/l^2)$  & $l \in \mathbb{R}$   \\
-  
+
   Polynomial  & $(\mathbf{x}^\intercal \mathbf{y} + b)^d$ & $b \in \mathbb{R}, d \in \mathbb{N}$   \\
-  
+
   Laplacian  & $exp(-||\mathbf{x} - \mathbf{y}||_{1}/\theta)$  & $\theta \in \mathbb{R}^+$  \\
-  
+
   Student's T  & $1/(1 + ||\mathbf{x} - \mathbf{y}||_{2}^d)$ & $d \in \mathbb{R}^{+}$\\
-  
+
   Maximum Likelihood Perceptron  & $sin^{-1}(\frac{w\mathbf{x}^\intercal \mathbf{y} + b}{\sqrt{w\mathbf{x}^\intercal \mathbf{x} + b + 1} \sqrt{w\mathbf{y}^\intercal \mathbf{y} + b + 1}})$ & $w, b \in \mathbb{R}^{+}$\\
 \hline
 \end{tabular}
