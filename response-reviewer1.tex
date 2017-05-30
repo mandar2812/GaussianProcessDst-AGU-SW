@@ -1,0 +1,114 @@
+\documentclass{article}
+\begin{document}
+
+\title{Response Reviewer 1}
+\maketitle
+
+\section*{Draft Comments \& Revisions}
+
+\begin{enumerate}
+\item{
+  \fbox{%
+    \parbox{\textwidth}{%
+line 31: Dst: A continuous hourly index which gives a measure of the weakening or strengthening of the Earth's equatorial magnetic field due to the weakening or strengthening of the ring currents and the geomagnetic storms. \\
+line 204: Dst gives a measure of ring currents. 
+\\
+\textbf{Comment}: Authors should add that ring current is not the only current that contributes to the Dst evolution. 
+The authors should mention the contribution of near -Earth cross-tail current (e.g. Ganushkina, et al., Ann. Geophys. 22, 1317-1334, 2004; Ganushkina, et al.. Ann. Geophys. 28, 123- 140, 2010); partial ring current 
+(e.g. Liemohn et al. J. Geophys. Res. 106, 10883-10904, 2001), substorm current wedge (e.g. Munsami, J. Geophys. Res. 105(A12), 27833-27840, 2000); magnetopause current. }
+}
+
+\textbf{Response}: Changes made in lines 32-36 in the file \texttt{changes.pdf}
+
+}
+
+\item{
+  
+\fbox{%
+\parbox{\textwidth}{%
+line 52-53: "The NARMAX methodology builds models by constructing polynomial expansions of inputs and determines the best combinations of monomials to include in the refined model by using a criterion called the error reduction ratio (ERR)." 
+
+
+\textbf{Comment}: NARMAX similar to NARX modelling is not limited to the polynomial based approach. It could employ wide range of sets of functions that form basis e.g. radial basis functions, wavelets etc. (e.g.: Wei et al., Wavelet based non-parametric NARX models for nonlinear input-output system identification; International Journal of Systems Science, Volume: 37, Issue: 15, Pages: 1089-1096, DOI: 10.1080/00207720600903011, Published: DEC 15 2006; Wei et al., Prediction of the Dst index using multiresolution wavelet models; JGR-SP, 109, A7, DOI: 10.1029/2003JA010332, 2004). Please modify the statement about NARMAX. 
+
+}
+} 
+
+
+\textbf{Response}: Changes made in lines 59-62 in the file \texttt{changes.pdf}
+
+}
+
+\item{
+
+\fbox{%
+\parbox{\textwidth}{%
+line 122: "Since we have noisy measurements of f over the training data, we add the noise variance σ2" 
+
+\textbf{Comment}: V and Bz are used in the current manuscript for GP-ARX model. It is well known that P dynamic pressure affects the Dst. Please discuss if the un-accounted inputs like P can affect statistical properties of "noise" and if these un-accounted inputs can affect the structure of the model. 
+
+}
+} 
+
+
+\textbf{Response}: Revisions made in lines 239-249 in the file \texttt{changes.pdf}
+
+}
+
+\item{
+
+\fbox{%
+\parbox{\textwidth}{%
+"Therefore, our exogenous parameters consist of solar wind velocity Vsw and IMF Bz." 
+
+\textbf{Comment}: There were many previously published papers that tried to identify the coupling functions between the solar wind and the Dst index. Since the introduction of Acasofu "epsilon" parameter many coupling functions include also "clock angle". Please explain in more detail why it was decided not to include "clock angle" into the set of parameters. 
+
+}
+} 
+
+
+\textbf{Response}: Revisions made in lines 239-249 in the file \texttt{changes.pdf}
+
+
+}
+
+
+\item{
+
+\fbox{%
+\parbox{\textwidth}{%
+Line 219: "It is known that the so called persistence model Dˆ st(t) = Dst(t − 1) performs quite well in the context of OSA prediction" 
+
+\textbf{Comment}: I think the major aim of various Dst forecasting tools is to predict in advance sever geomagnetic storms. Persistence model will fail exactly at the moment when accurate prediction is required, one step before the initiation of major geomagnetic storms. If some statistical parameters show that the persistence model performs quite well, thats mean that these parameters are not adequate in the assessment of forecasting tools and some other parameters should be used. Please modify the phrase above. 
+
+}
+} 
+
+
+\textbf{Response}: Revisions made in lines 268-270 and 340-347 in the file \texttt{changes.pdf}
+
+
+}
+
+
+\item{
+
+\fbox{%
+\parbox{\textwidth}{%
+
+\textbf{Comment}: Figures 5,6,7. Please expand the time interval shown. The figure should include the reasonable period of quiet time before and after the geomagnetic storm.
+
+}
+} 
+
+
+\textbf{Response}: Changes made for the figures 5-7
+
+
+}
+
+
+\end{enumerate}
+
+
+\end{document}
