@@ -429,7 +429,7 @@ Figures \ref{fig:CompareMae} and \ref{fig:CompareCC} show how the mean absolute 
 
 Figures \ref{fig:CompareMaeARX} and \ref{fig:CompareCCARX} break down the results for GP-ARX by the model selection routine used. Apart from the general trend observed in \ref{fig:CompareMae} and \ref{fig:CompareCC}, we also observe that \emph{grid search} and \emph{coupled simulated annealing} give superior performance as compared to gradient based \emph{maximum likelihood}.
 
-From the validation results, we can chose the model order which yields the best performance, for GP-AR it is $p_t = 6$ while for GP-ARX it is $p_t = 11$. Further examination of the validation results shows that in the scheme $p_t = 11$ choosing $p = 7, p_v = 1, p_b = 3$ gives superior results.
+From the validation results, we can chose the model order which yields the best performance, for GP-AR it is $p_t = 6$ while for GP-ARX it is $p_t = 11$. Further examination of the validation results shows that in the scheme $p_t = 11$ choosing $p = 6, p_v = 1, p_b = 3$ gives superior results.
 
 After choosing the best performing GP-AR and GP-ARX models, we calculate their performance on the test set of Table \ref{table:teststorms}. The results of these model evaluations are summarized in Table \ref{table:results}, the GP-AR and GP-ARX models improve upon the performance of the \emph{persistence model}.
 
@@ -616,20 +616,20 @@ We acknowledge use of NASA/GSFC's Space Physics Data Facility's OMNIWeb (or CDAW
 
 \begin{figure}
 \noindent\includegraphics[width=\textwidth]{PredictionsModel1/PredErrBars_Storm43.png}
-\caption{OSA Predictions with $\pm \sigma$ error bars for event: 2003/06/17 19:00 to 2003/06/19 03:00}
+\caption{OSA Predictions with $\pm \sigma$ error bars for event: 2003/06/17 to 2003/06/19}
 \label{fig:ComparePred1}
 \end{figure}
 
 
 \begin{figure}
-\noindent\includegraphics[width=\textwidth]{PredictionsModel1/PredErrBars_Storm8.png}
-\caption{OSA Predictions with $\pm \sigma$ error bars for event: 1998/11/13 00:00 to 1998/11/15 04:00}
+\noindent\includegraphics[width=\textwidth]{PredictionsModel1/PredErrBars_Storm16.png}
+\caption{OSA Predictions with $\pm \sigma$ error bars for event: 2012/03/08 to 2012/03/10}
 \label{fig:ComparePred2}
 \end{figure}
 
 \begin{figure}
-\noindent\includegraphics[width=\textwidth]{PredictionsModel1/PredErrBars_Storm9.png}
-\caption{OSA Predictions with $\pm \sigma$ error bars for event: 1999/01/13 16:00 to 1999/01/14 20:00}
+\noindent\includegraphics[width=\textwidth]{PredictionsModel1/PredErrBars_Storm46.png}
+\caption{OSA Predictions with $\pm \sigma$ error bars for event: 2003/11/20 to 2003/11/22}
 \label{fig:ComparePred3}
 \end{figure}
 
@@ -701,7 +701,7 @@ Maximum likelihood & NA & 0.2 & 150\\
 \begin{tabular}{l c c c}
 \hline
 Model & Mean Absolute Error & Root Mean Square Error & Coefficient of Correlation\\ \hline
-GP-ARX & 7.252 & 11.93 & 0.972\\
+GP-ARX & 7.219 & 11.88 & 0.972\\
 GP-AR & 8.37 & 14.04 & 0.963\\
 Persistence & 9.182 & 14.94 & 0.957\\
 \end{tabular}

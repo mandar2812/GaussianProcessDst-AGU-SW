@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL agutmpl.tex         Mon Mar 20 17:48:59 2017
-%DIF ADD revised-draft.tex   Mon May 29 19:52:35 2017
+%DIF ADD revised-draft.tex   Tue May 30 15:36:41 2017
 % AGUtmpl.tex: this template file is for articles formatted with LaTeX2e,
 % Modified March 2013
 %
@@ -469,7 +469,7 @@ and solar wind magnetosphere coupling functions \mbox{%DIFAUXCMD
 
 Mean functions in GPR models encode trends in the data, they are the baseline predictions the model falls back to in case the training and test data have little correlation as predicted by the kernel function. If there is no prior knowledge about the function to be approximated, \citet{Rasmussen:2005:GPM:1162254} state that it is perfectly reasonable to choose $m(\mathbf{x} = 0)$ as the mean function, as long as the target values are normalized. In the case of the $Dst$ time series, it is known that the so called \emph{persistence model} $\hat{D}st(t) = Dst(t-1)$ \DIFdelbegin \DIFdel{performs quite well in the context of OSA prediction. We therefore }\DIFdelend \DIFaddbegin \DIFadd{has high correlation with }\emph{\DIFadd{OSA}} \DIFadd{$Dst$. Due to its simplicity, we }\DIFaddend choose the \emph{persistence model} as the \DIFaddbegin \DIFadd{prior }\DIFaddend mean function in our OSA Dst models. 
 
-\DIFaddbegin \DIFadd{The }\emph{\DIFadd{persistence model}} \DIFadd{can be described as }\emph{\DIFadd{Markovian}} \DIFadd{prediction mechanism, when it is chosen as the prior mean of the GP-AR and GP-ARX model, it is indeed the case that the prior probability distribution of $Dst(t)$ is Gaussian with a strong }\emph{\DIFadd{Markovian}} \DIFadd{behavior $P(Dst(t)|\mathbf{x}_t) ~ \mathcal{N}(Dst(t-1), \sqrt{K_{osa}(t, t)})$, but the posterior predictive distribution of $Dst(t)$ conditional on the model training data (given in equation \ref{eq:posteriormean}) is non-}\emph{\DIFadd{Markovian}} \DIFadd{due its dependence on the term denoted by $\mathbf{K}_{*}$ which contains kernel values computed between the test data and training data features. Thus the GP-AR and GP-ARX models when used conditional on training data are non-}\emph{\DIFadd{Markovian}} \DIFadd{predictive models.
+\DIFaddbegin \DIFadd{The }\emph{\DIFadd{persistence model}} \DIFadd{can be described as }\emph{\DIFadd{Markovian}} \DIFadd{prediction mechanism, when it is chosen as the prior mean of the GP-AR and GP-ARX model, it is indeed the case that the prior probability distribution of $Dst(t)$ is Gaussian with a strong }\emph{\DIFadd{Markovian}} \DIFadd{behavior $P(Dst(t)|\mathbf{x}_t) \sim \mathcal{N}(Dst(t-1), \sqrt{K_{osa}(\mathbf{x}_t, \mathbf{x}_t)})$, but the posterior predictive distribution of $Dst(t)$ conditional on the model training data (given in equation \ref{eq:posteriormean}) is non-}\emph{\DIFadd{Markovian}} \DIFadd{due its dependence on the term denoted by $\mathbf{K}_{*}$ which contains kernel values computed between the test data and training data features. Thus the GP-AR and GP-ARX models when used conditional on training data are non-}\emph{\DIFadd{Markovian}} \DIFadd{predictive models.
 }
 
 \DIFaddend \subsection{Choice of Kernel}
@@ -529,7 +529,7 @@ Figures \ref{fig:CompareMae} and \ref{fig:CompareCC} show how the mean absolute 
 
 Figures \ref{fig:CompareMaeARX} and \ref{fig:CompareCCARX} break down the results for GP-ARX by the model selection routine used. Apart from the general trend observed in \ref{fig:CompareMae} and \ref{fig:CompareCC}, we also observe that \emph{grid search} and \emph{coupled simulated annealing} give superior performance as compared to gradient based \emph{maximum likelihood}.
 
-From the validation results, we can chose the model order which yields the best performance, for GP-AR it is $p_t = 6$ while for GP-ARX it is $p_t = 11$. Further examination of the validation results shows that in the scheme $p_t = 11$ choosing $p = 7, p_v = 1, p_b = 3$ gives superior results.
+From the validation results, we can chose the model order which yields the best performance, for GP-AR it is $p_t = 6$ while for GP-ARX it is $p_t = 11$. Further examination of the validation results shows that in the scheme $p_t = 11$ choosing \DIFdelbegin \DIFdel{$p = 7, p_v = 1, p_b = 3$ }\DIFdelend \DIFaddbegin \DIFadd{$p = 6, p_v = 1, p_b = 3$ }\DIFaddend gives superior results.
 
 After choosing the best performing GP-AR and GP-ARX models, we calculate their performance on the test set of Table \ref{table:teststorms}. The results of these model evaluations are summarized in Table \ref{table:results}, the GP-AR and GP-ARX models improve upon the performance of the \emph{persistence model}.
 
@@ -716,20 +716,24 @@ We acknowledge use of NASA/GSFC's Space Physics Data Facility's OMNIWeb (or CDAW
 
 \begin{figure}
 \noindent\includegraphics[width=\textwidth]{PredictionsModel1/PredErrBars_Storm43.png}
-\caption{OSA Predictions with $\pm \sigma$ error bars for event: 2003/06/17 19:00 to 2003/06/19 03:00}
+\caption{OSA Predictions with $\pm \sigma$ error bars for event: 2003/06/17 \DIFdelbeginFL \DIFdelFL{19:00 }\DIFdelendFL to 2003/06/19\DIFdelbeginFL \DIFdelFL{03:00}\DIFdelendFL }
 \label{fig:ComparePred1}
 \end{figure}
 
 
 \begin{figure}
-\noindent\includegraphics[width=\textwidth]{PredictionsModel1/PredErrBars_Storm8.png}
-\caption{OSA Predictions with $\pm \sigma$ error bars for event: 1998/11/13 00:00 to 1998/11/15 04:00}
+\noindent\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=\textwidth]{PredictionsModel1/PredErrBars_Storm8.png}
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=\textwidth]{PredictionsModel1/PredErrBars_Storm16.png}
+\DIFaddendFL \caption{OSA Predictions with $\pm \sigma$ error bars for event: \DIFdelbeginFL \DIFdelFL{1998}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{2012}\DIFaddendFL /\DIFdelbeginFL \DIFdelFL{11}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{03}\DIFaddendFL /\DIFdelbeginFL \DIFdelFL{13 00:00 }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{08 }\DIFaddendFL to \DIFdelbeginFL \DIFdelFL{1998}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{2012}\DIFaddendFL /\DIFdelbeginFL \DIFdelFL{11}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{03}\DIFaddendFL /\DIFdelbeginFL \DIFdelFL{15 04:00}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{10}\DIFaddendFL }
 \label{fig:ComparePred2}
 \end{figure}
 
 \begin{figure}
-\noindent\includegraphics[width=\textwidth]{PredictionsModel1/PredErrBars_Storm9.png}
-\caption{OSA Predictions with $\pm \sigma$ error bars for event: 1999/01/13 16:00 to 1999/01/14 20:00}
+\noindent\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=\textwidth]{PredictionsModel1/PredErrBars_Storm9.png}
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=\textwidth]{PredictionsModel1/PredErrBars_Storm46.png}
+\DIFaddendFL \caption{OSA Predictions with $\pm \sigma$ error bars for event: \DIFdelbeginFL \DIFdelFL{1999}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{2003}\DIFaddendFL /\DIFdelbeginFL \DIFdelFL{01}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{11}\DIFaddendFL /\DIFdelbeginFL \DIFdelFL{13 16:00 }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{20 }\DIFaddendFL to \DIFdelbeginFL \DIFdelFL{1999}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{2003}\DIFaddendFL /\DIFdelbeginFL \DIFdelFL{01}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{11}\DIFaddendFL /\DIFdelbeginFL \DIFdelFL{14 20:00}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{22}\DIFaddendFL }
 \label{fig:ComparePred3}
 \end{figure}
 
@@ -801,7 +805,7 @@ Maximum likelihood & NA & 0.2 & 150\\
 \begin{tabular}{l c c c}
 \hline
 Model & Mean Absolute Error & Root Mean Square Error & Coefficient of Correlation\\ \hline
-GP-ARX & 7.252 & 11.93 & 0.972\\
+GP-ARX & \DIFdelbeginFL \DIFdelFL{7.252 }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{7.219 }\DIFaddendFL & \DIFdelbeginFL \DIFdelFL{11.93 }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{11.88 }\DIFaddendFL & 0.972\\
 GP-AR & 8.37 & 14.04 & 0.963\\
 Persistence & 9.182 & 14.94 & 0.957\\
 \end{tabular}
