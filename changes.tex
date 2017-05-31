@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL agutmpl.tex         Mon Mar 20 17:48:59 2017
-%DIF ADD revised-draft.tex   Wed May 31 12:05:11 2017
+%DIF ADD revised-draft.tex   Wed May 31 14:29:52 2017
 % AGUtmpl.tex: this template file is for articles formatted with LaTeX2e,
 % Modified March 2013
 %
@@ -533,7 +533,10 @@ Figures \ref{fig:CompareMae} and \ref{fig:CompareCC} show how the mean absolute 
 
 Figures \ref{fig:CompareMaeARX} and \ref{fig:CompareCCARX} break down the results for GP-ARX by the model selection routine used. Apart from the general trend observed in \ref{fig:CompareMae} and \ref{fig:CompareCC}, we also observe that \emph{grid search} and \emph{coupled simulated annealing} give superior performance as compared to gradient based \emph{maximum likelihood}.
 
-From the validation results, we can chose the model order which yields the best performance, for GP-AR it is $p_t = 6$ while for GP-ARX it is $p_t = 11$. Further examination of the validation results shows that in the scheme $p_t = 11$ choosing \DIFdelbegin \DIFdel{$p = 7, p_v = 1, p_b = 3$ }\DIFdelend \DIFaddbegin \DIFadd{$p = 6, p_v = 1, p_b = 3$ }\DIFaddend gives superior results.
+From the validation results, we \DIFdelbegin \DIFdel{can chose }\DIFdelend \DIFaddbegin \DIFadd{choose }\DIFaddend the model order which yields the best \DIFaddbegin \DIFadd{RMSE }\DIFaddend performance, for GP-AR it is $p_t = 6$ while for GP-ARX it is \DIFdelbegin \DIFdel{$p_t = 11$.
+Further examination of the validation results shows that in the scheme $p_t = 11$ choosing $p = 7, p_v = 1, p_b = 3$ gives superior results.
+}\DIFdelend \DIFaddbegin \DIFadd{$p = 6, p_v = 1, p_b = 3$.
+}\DIFaddend 
 
 After choosing the best performing GP-AR and GP-ARX models, we calculate their performance on the test set of Table \ref{table:teststorms}. The results of these model evaluations are summarized in Table \ref{table:results}, the GP-AR and GP-ARX models improve upon the performance of the \emph{persistence model}.
 
@@ -873,7 +876,7 @@ Event Id & Start Date & Start Time & End Date & End Time & min. Dst \\ \hline
 13 & 2000/02/12 & 0500 & 2000/02/13 & 1500 & -133 \\
 14 & 2000/04/06 & 1700 & 2000/04/08 & 0900 & -288 \\
 15 & 2000/05/24 & 0100 & 2000/05/25 & 2000 & -147 \\
-16 & 2000/08/10 & 2000 & 2000/08/11 & 1800 & -106 \\
+16 & 2000/08/10 & 2000 & 2000/08/11 & 1800 & \DIFdelbeginFL \DIFdelFL{-106 }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{-230 }\DIFaddendFL \\
 17 & 2000/08/12 & 0200 & 2000/08/13 & 1700 & -235 \\
 18 & 2000/10/13 & 0200 & 2000/10/14 & 2300 & -107 \\
 19 & 2000/10/28 & 2000 & 2000/10/29 & 2000 & -127 \\
