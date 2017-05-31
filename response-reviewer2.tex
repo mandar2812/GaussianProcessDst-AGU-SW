@@ -1,0 +1,85 @@
+\documentclass{article}
+\begin{document}
+
+\title{Response Reviewer 2}
+\maketitle
+
+\section*{Draft Comments \& Revisions}
+
+\begin{enumerate}
+
+\item{
+
+\fbox{%
+    \parbox{\textwidth}{%
+\textbf{Comment}: 
+
+The authors must be care to review completely the researches from classical to intelligent methods for prediction of Dst, Kp. For example some of references are missing is: 
+(a)- Javad Sharifie, Caro Lucas, and Babak N. Araabi, "Locally linear neurofuzzy modeling and prediction 
+of geomagnetic disturbances based on solar wind conditions", Space Weather, Vol 4, 2006 
+(b)- Javad Sharifi, Babak N. Araabi, and Caro Lucas, "Multi-step prediction of Dst index using singular spectrum analysis and locally linear neurofuzzy modeling", Earth Planets Space, 58, 331-341, 2006 
+(c)- Loskutov, A., I. A. Istomin, K. M. Kuzanyan, and O. L. Kotlyarov, Testing and forecasting the time series of the solar activity by singular spectrum analysis, Nonlin. Phenomena in Complex Syst., 4(1), 47-57, 2001a. 
+(d)- Loskutov, A., I. Istomin, O. Kotlyarov, and K. Kuzanyan, A study of the regularities in Solar magnetic activity by singular spectrum analysis, Astronomy Letters, 27(11), 745-753, 2001b 
+And some of other which especially used for Dst predition from one step to multi-step.
+
+}
+}
+
+\textbf{Response}: Revisions made in lines 74-85 in the file \texttt{changes.pdf}
+
+
+}
+
+\item{
+
+\fbox{%
+    \parbox{\textwidth}{%
+\textbf{Comment}: To select best number of time lags of input regressor vector, you must use structure identification. To do this, an error criteria must be obtain based on number of time lags of each physical component. The error criteria has a minimum which is appropriate number of lagged time series. 
+
+
+}
+}
+
+\textbf{Response}: In section 4, we have specified that the model lags for each input component are chosen based on the predictive performance of each generated model on the validation data set. The storm events which comprise the validation data set are specified in table 4 of the manuscript. It is based on this method that we choose the time lags for each input. Care has been taken that no events of the validation data set overlap with the training or test data to ensure unbiased model lag selection.
+
+
+}
+
+\item{
+
+\fbox{%
+    \parbox{\textwidth}{%
+\textbf{Comment}: In this paper, even for one step, has one-step time delay, which means that prediction is near Markov (The last observed data is the prediction of next time step), it is obvious from figures 5-7. Then the prediction results is useless. To enhance this, some corrections is in front of authors: they may correct the method to non-Markovian OSA, or use the hybrid prediction methods for example combination of spectrum analysis with OSA or any other hybrid methods.
+
+
+}
+}
+
+\textbf{Response}: The GP-AR and GP-ARX models are strictly speaking non-Markovian models which we have explained in lines 274-281 in the file \texttt{changes.pdf}. Although many predictive models for $Dst$ are non-Markovian in formulation, due to strong \emph{persistence} behavior in the OMNI data, the Markovian component is always a dominant portion of all $Dst$ predictions. 
+
+This can be observed in figures 7, 9 in Javad Sharifi, Babak N. Araabi, and Caro Lucas, "Multi-step prediction of Dst index using singular spectrum analysis and locally linear neurofuzzy modeling", Earth Planets Space, 58, 331-341, 2006. 
+
+The NARMAX Dst OSA model as outlined in equation 2 of R. J. Boynton, M. A. Balikhin, S. A. Billings, A. S. Sharma, and O. A. Amariutei, "Data derived NARMAX Dst model", has a strong persistence/Markovian component ($0.8335 Dst(t-1)$) which is more significant as compared to the other terms of the model expansion.
+
+We, the authors argue that this is an artifact of the OMNI data and not inductive bias of the $Dst$ models in question.
+
+
+}
+
+\item{
+
+\fbox{%
+    \parbox{\textwidth}{%
+\textbf{Comment}: For enhanced method which author must develop, several extreme geomagnetic storms must be used to validate the method. In this storms the Dst index must be below of -300nT, i.e. Dst < -300nT for example extreme geomagnetic storm of 1989 (Dst goes to about -600nT) and etc. in this way, the author can postulate that have contribution for geomagnetic storm prediction.
+}
+}
+
+\textbf{Response}: With respect to the storm of 1989, there is very little solar wind $V$ and IMF $B_z$ data available for that particular event, hence it was not possible to calculate predictions for it. The authors would however, like to bring to attention event numbers 16 and 43 in table 5 of the manuscript. These events are a part of the test set used to evaluate the GP-AR and GP-ARX models. We have shown predictions for both in tables 6 and 7 of the revised manuscript.
+
+
+}
+
+
+
+\end{enumerate}
+\end{document}
