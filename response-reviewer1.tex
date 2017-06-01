@@ -4,7 +4,8 @@
 \title{Response Reviewer 1}
 \maketitle
 
-The authors would like to thank the reviewer for the various comments and suggestions which greatly helped in improving the quality of the manuscript. In the proceeding section they will find the revisions/responses for each concern outlined.
+The authors would like to thank the reviewer for the various comments and suggestions which greatly helped in improving the quality of the manuscript. 
+In the proceeding section they will find the revisions/responses for each concern outlined.
 
 \section*{Draft Comments \& Revisions}
 
@@ -17,7 +18,7 @@ The authors would like to thank the reviewer for the various comments and sugges
 \textbf{Comment}: The authors state the proposed methodology allows to construct error bars on the predictions. I think this can not be considered as a significant advantage because the past-cast performance for any forecasting tool can be used to construct statistical error bars for the prediction.}
 }
 
-\textbf{Response}: We do not agree with this assertion. To further elaborate the advantage of generating error bars using the Gaussian Process approach we have made changes in lines 91-97 in the file \texttt{changes.pdf}
+\textbf{Response}: We do not agree with this assertion because the error bars calculated from a past cast performance are static with respect to the model inputs. That is not the case with error bars generated from the GP-AR and GP-ARX models. From figures 5-7 in the manuscript it can be seen that the error bars on a prediction depend on the inputs provided, this dependence is quantified via the covariance function. To further elaborate the advantage of generating error bars using the Gaussian Process approach we have made changes in lines 91-97 in the file \texttt{changes.pdf}
 
 
 }
@@ -34,7 +35,7 @@ The authors should mention the contribution of near -Earth cross-tail current (e
 (e.g. Liemohn et al. J. Geophys. Res. 106, 10883-10904, 2001), substorm current wedge (e.g. Munsami, J. Geophys. Res. 105(A12), 27833-27840, 2000); magnetopause current. }
 }
 
-\textbf{Response}: Changes made in lines 32-36 in the file \texttt{changes.pdf}
+\textbf{Response}: We agree with the recommendations. Changes made in lines 32-36 in the file \texttt{changes.pdf}
 
 }
 
@@ -51,7 +52,7 @@ line 52-53: "The NARMAX methodology builds models by constructing polynomial exp
 } 
 
 
-\textbf{Response}: Changes made in lines 59-62 in the file \texttt{changes.pdf}
+\textbf{Response}: We agree with the recommendations. Changes made in lines 59-62 in the file \texttt{changes.pdf}
 
 }
 
@@ -67,7 +68,7 @@ line 122: "Since we have noisy measurements of f over the training data, we add 
 } 
 
 
-\textbf{Response}: Revisions made in lines 229-233, 243-253 and 256-265 in the file \texttt{changes.pdf}
+\textbf{Response}: We appreciate this comment as it raises important modelling questions. Our general understanding is that unaccounted solar wind parameters would increase the magnitude of the noise component in the model, on the other hand we do not have strong reasons to think that it will drastically change the structure of the model with respect to parameters such as the autoregressive lag of $Dst$ and the exogenous inputs. We feel this because the solar wind speed and IMF $B_z$ contain a large amount of statistical information with regards to the dynamics of $Dst$. Also worth noting is that the solar wind dynamic pressure in the OMNI data is calculated as a product of plasma density and square of solar wind speed. Revisions have been made along these ideas in lines 229-233, 243-253 and 256-265 in the file \texttt{changes.pdf}
 
 }
 
@@ -83,7 +84,7 @@ line 122: "Since we have noisy measurements of f over the training data, we add 
 } 
 
 
-\textbf{Response}: Revisions made in lines 243-253 in the file \texttt{changes.pdf}
+\textbf{Response}: With regards to coupling functions, they can be approximated in the GP-ARX model as long as the eigen-space of the chosen covariance allows functional expressions which resemble common solar wind magnetosphere coupling functions. It is also the case that a large portion of the magnitude of these coupling functions consists of the solar wind parameters already included in the GP-ARX model. Since the clock angle enters these coupling functions through the term $sin^4 \theta$, its magnitude and impact is bounded. Therefore we felt it was not imperative to not include it in the model exogenous inputs. Revisions made in lines 243-253 in the file \texttt{changes.pdf}
 
 
 }
@@ -101,7 +102,7 @@ Line 219: "It is known that the so called persistence model DË† st(t) = Dst(t âˆ
 } 
 
 
-\textbf{Response}: Revisions made in lines 272-273 and 344-351 in the file \texttt{changes.pdf}
+\textbf{Response}: We agree with this comment, the persistence model will fail one moment before a storm, also it is the need of the hour for more informative performance metrics for $Dst$ prediction. Since it was not the aim of this research to suggest new performance metrics, we chose to use the ones which are widely used in publications so far. Revisions made in lines 272-273 and 344-351 in the file \texttt{changes.pdf}
 
 
 }
